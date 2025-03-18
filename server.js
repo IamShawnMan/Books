@@ -17,7 +17,10 @@ const server = createServer((req, res) => {
     getBookById(req, res, books);
   } else if (method === "POST" && parsedUrl.pathname === "/books/create") {
     createBook(req, res, books);
-  } else if (method === "PUT" && parsedUrl.pathname === "/books/update") {
+  } else if (
+    method === "PUT" &&
+    parsedUrl.pathname.startsWith("/books/update")
+  ) {
     updateBook(req, res, books);
   }
 });
