@@ -1,0 +1,23 @@
+[
+  {
+    "id": "350ab316-a69a-4b35-b519-b510b39fe3d5",
+    "name": "O'tgan kunlar",
+    "year": 1990,
+    "price": 50000,
+    "author": "Abdulla Qodiriy"
+  },
+  {
+    "id": "753d67aa-0202-4fca-900a-e99763de93ef",
+    "name": "Yugur",
+    "year": 2016,
+    "price": 50000,
+    "author": "Someone"
+  },
+  {
+    "id": "ef8885d4-6c4a-4055-af09-52963dda83ba",
+    "name": "Yugur",
+    "year": 2016,
+    "price": 50000,
+    "author": "Someone"
+  }
+]

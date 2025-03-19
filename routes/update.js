@@ -1,6 +1,7 @@
+import fs from "node:fs";
+
 const updateBook = (req, res, books) => {
   const bookId = req.url.split("/")[3];
-  console.log(bookId);
 
   let body = "";
   req.on("data", (ch) => {
@@ -9,7 +10,7 @@ const updateBook = (req, res, books) => {
   req.on("end", () => {
     try {
       const updatedData = JSON.parse(body);
-      const bookIndex = books.findIndex((book) => book.id === +bookId);
+      const bookIndex = books.findIndex((book) => book.id === bookId);
 
       if (bookIndex < 0) {
         res.writeHead(404, { "Content-Type": "application/json" });
@@ -17,7 +18,18 @@ const updateBook = (req, res, books) => {
         return;
       }
       books[bookIndex] = { ...books[bookIndex], ...updatedData };
-      addToFile(books);
+
+      fs.writeFile(
+        "book.json",
+        JSON.stringify(books, null, 2),
+        { encoding: "utf8" },
+        (err) => {
+          if (err) {
+            console.error("Error writing files to books.json", err);
+          }
+        }
+      );
+
       res.writeHead(200, { "Content-Type": "application/json" });
       res.write(
         JSON.stringify({

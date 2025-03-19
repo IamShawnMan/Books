@@ -4,7 +4,7 @@ const getBookById = (req, res, books) => {
     let exactBook = {};
 
     books.map((e, i) => {
-      if (e.id === +bookId) {
+      if (e.id === bookId) {
         exactBook = e;
         return;
       }
