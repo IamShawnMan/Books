@@ -1,4 +1,22 @@
+import { v4 } from "uuid";
+
 const createBook = (req, res, books) => {
+  const addToFile = (data) => {
+    books.push(data);
+    fs.writeFile(
+      "books.json",
+      JSON.stringify(books, null, 2),
+      {
+        encoding: "utf8",
+      },
+      (err) => {
+        if (err) {
+          console.error("Error writing files to books.json", err);
+        }
+      }
+    );
+  };
+
   let body = "";
   req.on("data", (ch) => {
     body += ch;
@@ -6,11 +24,11 @@ const createBook = (req, res, books) => {
   req.on("end", () => {
     const data = JSON.parse(body);
     const newBook = {
-      id: books.length,
+      id: v4(),
       ...data,
     };
 
-    books.push(newBook);
+    addToFile(newBook);
 
     res.writeHead(201, { "Content-Type": "application/json" });
     res.write(JSON.stringify(newBook));

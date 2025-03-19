@@ -17,6 +17,7 @@ const updateBook = (req, res, books) => {
         return;
       }
       books[bookIndex] = { ...books[bookIndex], ...updatedData };
+      addToFile(books);
       res.writeHead(200, { "Content-Type": "application/json" });
       res.write(
         JSON.stringify({

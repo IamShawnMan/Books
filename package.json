@@ -18,5 +18,8 @@
     "url": "https://github.com/IamShawnMan/Books/issues"
   },
   "homepage": "https://github.com/IamShawnMan/Books#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "uuid": "^11.1.0"
+  }
 }
