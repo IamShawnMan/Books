@@ -2,8 +2,9 @@ import http, { createServer } from "node:http";
 import url from "node:url";
 import getBooks from "./routes/books.js";
 import createBook from "./routes/create.js";
-import updateBook from "./routes/updateBook.js";
+import updateBook from "./routes/update.js";
 import getBookById from "./routes/book.js";
+import deleteBook from "./routes/delete.js";
 
 const books = [];
 const PORT = 8080;
@@ -22,6 +23,11 @@ const server = createServer((req, res) => {
     parsedUrl.pathname.startsWith("/books/update")
   ) {
     updateBook(req, res, books);
+  } else if (
+    method === "DELETE" &&
+    parsedUrl.pathname.startsWith("/books/delete")
+  ) {
+    deleteBook(req, res, books);
   }
 });
 
